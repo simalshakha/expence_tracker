@@ -58,7 +58,8 @@ http://127.0.0.1:8000/
 Authentication Endpoints
 • POST /api/auth/register/ → User registration
 • POST /api/auth/login/ → User login (returns JWT tokens)
-• POST /api/auth/refresh/ → Refresh JWT token
+• POST /api/auth/refresh/ → Refresh JWT token'
+
 Expense/Income Endpoints
 • GET /api/expenses/ → List user's records (paginated)
 • POST /api/expenses/ → Create new record
