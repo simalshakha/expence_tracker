@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from rest_framework import viewsets, permissions
 from .models import ExpenseIncome as Expense
-from .serializers import ExpenseSerializer
+from .serializers import ExpenseListSerializer, ExpenseSerializer
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -22,27 +22,27 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
 
 class ExpenseViewSet(viewsets.ModelViewSet):
-    serializer_class = ExpenseSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         if user.is_superuser:
-            # Superuser can see all expenses
             return Expense.objects.all()
-        # Normal users see only their own records
         return Expense.objects.filter(user=user)
 
     def perform_create(self, serializer):
-        # Save the user on create
         serializer.save(user=self.request.user)
 
     def get_object(self):
         obj = super().get_object()
-        # Only allow owners or superusers to access the object
         if obj.user != self.request.user and not self.request.user.is_superuser:
             raise PermissionDenied("You do not have permission to access this record.")
         return obj
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return ExpenseListSerializer
+        return ExpenseSerializer
 
 
 

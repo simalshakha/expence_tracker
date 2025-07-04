@@ -32,9 +32,39 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-# Serializer for ExpenseIncome
+
+
 class ExpenseSerializer(serializers.ModelSerializer):
+    total = serializers.SerializerMethodField()
+
     class Meta:
         model = ExpenseIncome
-        fields = '__all__'
-        read_only_fields = ['user', 'total', 'created_at', 'updated_at']
+        fields = [
+            'id',
+            'title',
+            'description',
+            'amount',
+            'transaction_type',
+            'tax',
+            'tax_type',
+            'total',
+            'created_at',
+            'updated_at',
+        ]
+
+    def get_total(self, obj):
+        if obj.tax_type == 'flat':
+            return obj.amount + obj.tax
+        return obj.amount + (obj.amount * obj.tax / 100)
+        
+class ExpenseListSerializer(serializers.ModelSerializer):
+    total = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ExpenseIncome
+        fields = ['id', 'title', 'amount', 'transaction_type', 'total', 'created_at']
+
+    def get_total(self, obj):
+        if obj.tax_type == 'flat':
+            return obj.amount + obj.tax
+        return obj.amount + (obj.amount * obj.tax / 100)
