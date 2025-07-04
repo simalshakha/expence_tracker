@@ -1,14 +1,16 @@
 # Expense Tracker API
 
-This is a backend API built using Django and Django REST Framework for managing personal expenses. It supports secure authentication using JWT tokens and allows users to log in, create, view, filter, and analyze their expenses.
+This is a backend API built using Django and Django REST Framework for managing personal expenses. It supports secure authentication using JWT tokens and allows users to register,log in, create, view
 
 ## Project Overview
+Features
+ -User registration and login with JWT authentication
+ -CRUD operations for expense/income records
+ -Automatic tax calculation (flat amount or percentage)
+ -Pagination for list endpoints
+ -Role-based access control: regular users vs superusers
+ -Detailed timestamps for records
 
-Features included in this project:
-- User login via JWT (token-based authentication)
-- Create, update, and delete expense entries
-- Filter expenses by date range
-- Get analytics like total spending, category-wise summary, and daily/weekly/monthly trends
 
 ## Technologies Used
 
@@ -23,7 +25,7 @@ Features included in this project:
 Step-by-step instructions to set up and run the project:
 
 1. Clone the repository:
-   git clone https://github.com/ayushanand1412/expense_tracker.git
+   git clone https://github.com/simalshakha/expence_tracker.git
    cd expense_tracker
 
 2. Create a virtual environment and activate it:
@@ -53,21 +55,16 @@ http://127.0.0.1:8000/
 
 ## API Endpoints  
 
-Authentication Endpoints:
-- POST /api/login/ : Authenticate and receive access + refresh tokens
-- POST /api/token/refresh/ : Get a new access token using a refresh token
-
-Expense Management Endpoints:
-- POST /api/expenses/ : Create a new expense 
-- GET /api/expenses/ : Get all expenses for the logged-in user
-- GET /api/expenses/?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD : Get expenses filtered by date range
-- PUT /api/expenses/<id>/ : Update an existing expense
-- DELETE /api/expenses/<id>/ : Delete an expense
-
-Analytics Endpoint:
-- GET /api/expenses/analytics/ : Get expense analytics for the logged-in user
-- GET /api/expenses/analytics/?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD : 
-  Returns total expense, category-wise breakdown, and daily, weekly, monthly summaries.
+Authentication Endpoints
+• POST /api/auth/register/ → User registration
+• POST /api/auth/login/ → User login (returns JWT tokens)
+• POST /api/auth/refresh/ → Refresh JWT token
+Expense/Income Endpoints
+• GET /api/expenses/ → List user's records (paginated)
+• POST /api/expenses/ → Create new record
+• GET /api/expenses/{id}/ → Get specific record
+• PUT /api/expenses/{id}/ → Update record
+• DELETE /api/expenses/{id}/ → Delete record
 
 ## Sample API Call: POST /api/expenses/
 
@@ -76,11 +73,14 @@ In Headers:
   Content-Type: application/json
 
 Body:
-  {
-    "amount": 500,
-    "category": "FOOD",
-    "date": "2025-06-20"
-  }
+{
+  "title": "Percentage Tax Test",
+  "description": "Test percentage tax calculation",
+  "amount": 100.00,
+  "transaction_type": "debit",
+  "tax": 10.00,
+  "tax_type": "percentage"
+}
 
 ## Notes
 
@@ -88,7 +88,6 @@ Body:
 - Use the access token in the headers like this:
   Authorization: Bearer your_access_token_here
 - SQLite is used for local development.
-- Make sure to configure Django to use the custom user model defined in the project.
 
 ## Additional Notes
 
@@ -99,12 +98,7 @@ Body:
   All dates must be in the format `YYYY-MM-DD`.  
   Example: `2025-06-30`
 
-- Allowed Categories for Expenses:  
-  Only the following categories are valid (must be in **uppercase**):
-  - FOOD
-  - TRAVEL
-  - BILLS
-  - OTHER
+
 
 - Authentication Header:
   All API endpoints require authentication using a JWT access token.  
@@ -114,5 +108,8 @@ Body:
 
 - Recommended Tool for Testing:  
   Use **Postman** to test API endpoints. Make sure to:
-  1. First, obtain your access and refresh token by calling `/api/login/`.
+  1. First, obtain your access and refresh token by calling `/api/auth/login/`.
   2. Then, add the access token to the `Authorization` header as shown above.
+ 
+-Contact
+ For any questions or feedback, feel free to open an issue or contact me at sshakha350@gmail.com.
