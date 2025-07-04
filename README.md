@@ -5,6 +5,7 @@ This is a backend API built using Django and Django REST Framework for managing 
 ## Project Overview
 Features
  -User registration and login with JWT authentication
+ 
  -CRUD operations for expense/income records
  -Automatic tax calculation (flat amount or percentage)
  -Pagination for list endpoints
