@@ -11,9 +11,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     # JWT auth endpoints
-    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    
+    path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     # Django built-in auth views for session login/logout (browsable API)
     path('accounts/', include('django.contrib.auth.urls')),  # <-- add this line
     
