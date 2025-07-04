@@ -1,33 +1,37 @@
 # Expense Tracker API
 
-This is a backend API built using Django and Django REST Framework for managing personal expenses. It supports secure authentication using JWT tokens and allows users to register,log in, create, view
+A backend API built with Django and Django REST Framework to manage personal expenses. The API supports secure JWT authentication and provides features for user registration, login, and full CRUD operations on expense and income records.
+
+---
 
 ## Project Overview
-Features
- -User registration and login with JWT authentication
- 
- -CRUD operations for expense/income records
- -Automatic tax calculation (flat amount or percentage)
- -Pagination for list endpoints
- -Role-based access control: regular users vs superusers
- -Detailed timestamps for records
 
+### Features
+- User registration and login with JWT authentication
+- CRUD operations for expense and income records
+- Automatic tax calculation (flat amount or percentage)
+- Pagination support on list endpoints
+- Role-based access control (regular users vs superusers)
+- Detailed timestamps for records
+
+---
 
 ## Technologies Used
-
 - Python
 - Django
 - Django REST Framework
-- Simple JWT (for token-based login)
-- SQLite
+- Simple JWT (JWT token authentication)
+- SQLite (local development)
+
+---
 
 ## How to Run the Project Locally
 
-Step-by-step instructions to set up and run the project:
-
-1. Clone the repository:
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/simalshakha/expence_tracker.git
    cd expense_tracker
+
 
 2. Create a virtual environment and activate it:
    For Windows:
@@ -57,16 +61,21 @@ http://127.0.0.1:8000/
 ## API Endpoints  
 
 Authentication Endpoints
-• POST /api/auth/register/ → User registration
-• POST /api/auth/login/ → User login (returns JWT tokens)
-• POST /api/auth/refresh/ → Refresh JWT token'
+| Method | Endpoint              | Description                     |
+| ------ | --------------------- | ------------------------------- |
+| POST   | `/api/auth/register/` | User registration               |
+| POST   | `/api/auth/login/`    | User login (returns JWT tokens) |
+| POST   | `/api/auth/refresh/`  | Refresh JWT token               |
 
 Expense/Income Endpoints
-• GET /api/expenses/ → List user's records (paginated)
-• POST /api/expenses/ → Create new record
-• GET /api/expenses/{id}/ → Get specific record
-• PUT /api/expenses/{id}/ → Update record
-• DELETE /api/expenses/{id}/ → Delete record
+Method	Endpoint	Description
+| Method | Endpoint              | Description                                    |
+| ------ | --------------------- | ---------------------------------------------- |
+| GET    | `/api/expenses/`      | List user's expense/income records (paginated) |
+| POST   | `/api/expenses/`      | Create a new record                            |
+| GET    | `/api/expenses/{id}/` | Retrieve a specific record                     |
+| PUT    | `/api/expenses/{id}/` | Update a record                                |
+| DELETE | `/api/expenses/{id}/` | Delete a record                                |
 
 ## Sample API Call: POST /api/expenses/
 
