@@ -35,26 +35,33 @@ A backend API built with Django and Django REST Framework to manage personal exp
 
 2. Create a virtual environment and activate it:
    For Windows:
-   python -m venv venv
-   venv\Scripts\activate
+      ```bash
+      python -m venv venv
+      venv\Scripts\activate
 
-   For macOS/Linux:
-   python3 -m venv venv
-   source venv/bin/activate
+ For macOS/Linux:
+      ```bash
+      python3 -m venv venv
+      source venv/bin/activate
+                  
 
-3. Install all required Python packages:
-   pip install -r requirements.txt
+4. Install all required Python packages:
+      ```bash
+      pip install -r requirements.txt
 
-4. Apply database migrations:
-   python manage.py makemigrations
-   
-   python manage.py migrate
+6. Apply database migrations:
+    ```bash
+      python manage.py makemigrations
+      
+      python manage.py migrate
 
-6. Create a superuser account to access the admin panel and also for login:
+8. Create a superuser account to access the admin panel and also for login:
+    ```bash
    python manage.py createsuperuser
 
-7. Start the Django development server:
-   python manage.py runserver
+10. Start the Django development server:
+    ```bash
+      python manage.py runserver
 
 Now your project is running at:
 http://127.0.0.1:8000/
@@ -83,16 +90,16 @@ Method	Endpoint	Description
 In Headers:
   Authorization: Bearer <access_token>
   Content-Type: application/json
-
-Body:
-{
-  "title": "Percentage Tax Test",
-  "description": "Test percentage tax calculation",
-  "amount": 100.00,
-  "transaction_type": "debit",
-  "tax": 10.00,
-  "tax_type": "percentage"
-}
+     ```json
+         Body:
+         {
+           "title": "Percentage Tax Test",
+           "description": "Test percentage tax calculation",
+           "amount": 100.00,
+           "transaction_type": "debit",
+           "tax": 10.00,
+           "tax_type": "percentage"
+         }
 
 ## Notes
 
