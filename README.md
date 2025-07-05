@@ -47,12 +47,13 @@ A backend API built with Django and Django REST Framework to manage personal exp
 
 4. Apply database migrations:
    python manage.py makemigrations
+   
    python manage.py migrate
 
-5. Create a superuser account to access the admin panel and also for login:
+6. Create a superuser account to access the admin panel and also for login:
    python manage.py createsuperuser
 
-6. Start the Django development server:
+7. Start the Django development server:
    python manage.py runserver
 
 Now your project is running at:
